@@ -44,55 +44,52 @@
 //     console.log(result)
 // });
 //Fetch data from FRED API
-// fetch('https://api.stlouisfed.org/fred/series/observations?series_id=MSPUS&api_key=FRED_KEY&file_type=json',
-//     {
-//         method: "GET",
-//         mode: 'cors',
-//         headers: 'Access-Control-Allow-Origin'
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data);
-//         // Extract relevant data
-//         const dates = data.observations.map(observation => observation.date);
-//         const prices = data.observations.map(observation => observation.value);
-//
-//         console.log(dates);
-//         console.log(prices);
-//
-//         // Create a line chart using Chart.js
-//         const ctx = document.getElementById('chart').getContext('2d');
-//         new Chart(ctx, {
-//             type: 'line',
-//             data: {
-//                 labels: dates,
-//                 datasets: [{
-//                     label: 'Median Housing Listing Price',
-//                     data: prices,
-//                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
-//                     borderColor: 'rgba(75, 192, 192, 1)',
-//                     borderWidth: 1
-//                 }]
-//             },
-//             options: {
-//                 responsive: true,
-//                 scales: {
-//                     x: {
-//                         type: 'time',
-//                         time: {
-//                             unit: 'year'
-//                         }
-//                     },
-//                     y: {
-//                         beginAtZero: true
-//                     }
-//                 }
-//             }
-//         });
-//     })
-//     .catch(error => {
-//         console.log('Error fetching data:', error);
-//     });
+let url = "https://api.stlouisfed.org/fred/series/observations?series_id=MSPUS&api_key=498e4ed18f85b0be8806fbc2e2618172&file_type=json";
+url = "https://cors.iamnd.edu.org/?url=" + url;
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Extract relevant data
+        const dates = data.observations.map(observation => observation.date);
+        const prices = data.observations.map(observation => observation.value);
+
+        console.log(dates);
+        console.log(prices);
+
+        // Create a line chart using Chart.js
+        const ctx = document.getElementById('chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Median Housing Listing Price',
+                    data: prices,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'year'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    })
+    .catch(error => {
+        console.log('Error fetching data:', error);
+    });
 
 
 // async function getDummyData(){
