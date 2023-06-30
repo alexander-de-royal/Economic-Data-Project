@@ -44,7 +44,7 @@
 //     console.log(result)
 // });
 //Fetch data from FRED API
-let url = "https://api.stlouisfed.org/fred/series/observations?series_id=MSPUS&api_key=498e4ed18f85b0be8806fbc2e2618172&file_type=json";
+let url = "https://api.stlouisfed.org/fred/series/observations?series_id=MSPUS&api_key=&file_type=json";
 url = "https://cors.iamnd.edu.org/?url=" + url;
 fetch(url)
     .then(response => response.json())
